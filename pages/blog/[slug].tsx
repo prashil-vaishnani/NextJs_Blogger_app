@@ -10,7 +10,6 @@ type BlogType = {
 }[];
 
 const BlogId: NextPage<Blogger> = (blogger) => {
-  console.log(blogger);
   return (
     <>
       <div>{blogger.blogger[0].title}</div>
@@ -24,7 +23,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.slug;
   const blogs = (await import("../../blog_details.json")).default;
   const blogger = blogs.filter((blog) => blog.id === id);
-  console.log(blogger);
 
   return {
     props: { blogger },
