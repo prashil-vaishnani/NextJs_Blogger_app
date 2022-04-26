@@ -12,7 +12,9 @@ const Blog = () => {
             return (
               <li key={blog.id} className="p-2 ">
                 <strong>
-                  <Link href={`/blog/${blog.id}`}>{blog.title}</Link>
+                  <Link href={`/blog/${blog.id}`} passHref>
+                    {blog.title}
+                  </Link>
                 </strong>
               </li>
             );
