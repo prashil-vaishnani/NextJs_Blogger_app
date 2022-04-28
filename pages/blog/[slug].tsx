@@ -29,8 +29,11 @@ export default BlogId;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.slug;
-  const blogs = (await import("../../blog_details.json")).default;
-  const blogger = blogs.filter((blog) => blog.id === id);
+  const res: Response = await fetch("http://localhost:3000/api/hello");
+  const blogs: BlogType = await res.json();
+  const blogger = blogs.filter(
+    (blog: { id: string | string[] | undefined }) => blog.id === id
+  );
 
   return {
     props: { blogger },
@@ -38,8 +41,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const blogs = (await import("../../blog_details.json")).default;
-  const paths = blogs.map((blog) => {
+  const res: Response = await fetch("http://localhost:3000/api/hello");
+  const blogs: BlogType = await res.json();
+
+  const paths = blogs.map((blog: { id: string }) => {
     return { params: { slug: blog.id } };
   });
   return { paths, fallback: false };

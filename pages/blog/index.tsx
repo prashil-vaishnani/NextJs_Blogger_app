@@ -1,9 +1,18 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 
-import { default as blogs } from "../../blog_details.json";
+//import { default as blogs } from "../../blog_details.json";
+type Data = { id: string; title: string; description: string }[];
 
 const Blog: React.FC = () => {
+  const [blogs, setBlogs] = useState([]);
+  const fetchBlog = async () => {
+    const response = await fetch("/api/hello");
+    const data = await response.json();
+    console.log(data);
+    setBlogs(data);
+  };
   return (
     <>
       <Head>
@@ -12,8 +21,12 @@ const Blog: React.FC = () => {
       <div className="container border ">
         <div className="mt-1">
           <h4 className="py-1">Blog List</h4>
+          <div>
+            {" "}
+            <button onClick={fetchBlog}>Get the latest blogs</button>
+          </div>
           <ul>
-            {blogs.map((blog) => {
+            {(blogs as Data).map((blog) => {
               return (
                 <li key={blog.id} className="p-2 ">
                   <strong>

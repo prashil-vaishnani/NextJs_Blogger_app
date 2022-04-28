@@ -9,8 +9,8 @@ const Layout = ({ children }: MyComponentProps) => {
         <Link href="/">
           <a className="text-white fw-bold ">Home</a>
         </Link>
-        <Link href="/about">
-          <a className="text-white fw-bold px-3">about</a>
+        <Link href="/Add">
+          <a className="text-white fw-bold px-3">Add</a>
         </Link>
         <Link href="/blog">
           <a className="text-white fw-bold">blog</a>
