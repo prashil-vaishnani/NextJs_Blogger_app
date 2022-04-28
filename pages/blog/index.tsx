@@ -6,10 +6,10 @@ import { useState } from "react";
 type Data = { id: string; title: string; description: string }[];
 
 const Blog: React.FC = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState<Data>([]);
   const fetchBlog = async () => {
-    const response = await fetch("/api/hello");
-    const data = await response.json();
+    const response: Response = await fetch("/api/hello");
+    const data: Data = await response.json();
     console.log(data);
     setBlogs(data);
   };

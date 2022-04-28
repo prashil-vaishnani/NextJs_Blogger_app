@@ -7,7 +7,7 @@ type Data = { id: string; title: string; description: string };
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data[]>
+  res: NextApiResponse<Data | Data[]>
 ) {
   if (req.method === "GET") {
     res.status(200).json(blogs);

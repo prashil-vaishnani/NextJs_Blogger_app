@@ -1,14 +1,14 @@
 import Head from "next/head";
 import { useState } from "react";
 
-const AddBlog = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const AddBlog: React.FC = () => {
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   const titleHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const response = await fetch("/api/hello", {
+    const response: Response = await fetch("/api/hello", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
