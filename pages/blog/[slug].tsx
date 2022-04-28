@@ -1,4 +1,6 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
 interface Blogger {
   blogger: BlogType;
 }
@@ -12,8 +14,14 @@ type BlogType = {
 const BlogId: NextPage<Blogger> = (blogger) => {
   return (
     <>
-      <div>{blogger.blogger[0].title}</div>
-      <div>{blogger.blogger[0].description}</div>
+      <Head>
+        <title>{blogger.blogger[0].title}</title>
+      </Head>
+      <div className="container border ">
+        <div className=" pt-5 fs-3 fw-bold">{blogger.blogger[0].title}</div>
+        <div className="pb-5">{blogger.blogger[0].description}</div>
+        <Link href="/blog">Back</Link>
+      </div>
     </>
   );
 };
